@@ -1,0 +1,76 @@
+package mainpack;
+
+import java.io.FileWriter;
+import java.sql.*;
+import java.util.Scanner;
+public class maincl {
+	public static void main(String args[])
+	{
+		Connection c=null;
+		try{
+			Class.forName("org.sqlite.JDBC");
+			c=DriverManager.getConnection("jdbc:sqlite:info.db");
+			System.out.println("Connected Successfully!");
+			System.out.println("Enter operation to perform \n1.add \n2.select\n3.delete\n4.update");
+			Scanner sc = new Scanner(System.in);
+			int op=sc.nextInt();
+			Statement st =c.createStatement();
+			String s;
+			switch(op)
+			{
+			case 1: 
+				   System.out.println("Enter name:");
+				   String name=sc.next();
+				   s="insert into " +
+				   		"simple(name) " +
+				   		"values('"+name+"')";
+				   st.executeUpdate(s);
+				   System.out.println("Added new record!");
+				   st.close();
+				   c.close();
+				   break;
+			case 2:
+				  s="select * from simple";
+				  ResultSet rs=st.executeQuery(s);
+				  while(rs.next())
+				  {
+					  String n=rs.getString("name");
+					  System.out.println(n);
+				  }
+				  rs.close();
+				  st.close();
+				  c.close();
+				  break;
+			case 3:
+				System.out.println("Enter record id to delete!");
+				int id=sc.nextInt();
+				s="delete from simple where sn="+id;
+				st.executeUpdate(s);
+				System.out.println("Record is deleted!");
+				st.close();
+				c.close();
+				break;
+			case 4:
+				System.out.println("Enter record id to Update name!");
+				int id1=sc.nextInt();
+				System.out.println("Enter new name");
+				String n=sc.next();
+				s="update simple set name='"+n+"' where sn='"+id1+"'";
+				st.executeUpdate(s);
+				System.out.println("Record is Updated!");
+				st.close();
+				c.close();
+				break;
+			default:
+				   System.out.println("pls choose correctly!");
+				   break;
+			}
+			
+		}
+		catch(Exception e){
+			System.out.print("cant connect"+e);
+			System.exit(0);
+		}
+	}
+
+}
