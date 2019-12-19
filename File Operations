@@ -1,0 +1,19 @@
+package mainpack;
+
+import java.io.FileWriter;
+import java.util.Scanner;
+
+public class maincl {
+	public static void main(String args[])
+	{
+	    System.out.println("hi from google");
+	    try{
+	    FileWriter f = new FileWriter("filename.type");
+	    f.write("Hello from java");
+	    f.close();
+	    }
+	    catch(Exception e){
+	    	System.out.println(e);
+	    }
+   }
+}
