@@ -1,0 +1,24 @@
+
+import java.util.Iterator;
+import java.util.HashSet;
+
+public class linkedlist {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		HashSet<String> a = new HashSet<String>();
+		a.add("Ox");
+		a.add("Rabbit");
+		a.add("Cat");
+		Iterator<String> il=a.iterator();
+		while(il.hasNext())
+		{
+			System.out.println(il.next());
+		}
+		
+	}
+
+}
