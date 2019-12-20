@@ -1,0 +1,40 @@
+package mypack;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class sortapp {
+
+	static class emp implements Comparable<emp>{
+		int age;
+		String name;
+		public emp(String name,int age){
+			this.name=name;
+			this.age=age;
+		}
+		public int compareTo(emp a){
+			return this.age-a.age;
+//			for descending -> a.age-this.age;
+		}
+	}
+	public static void main(String[] args) {
+		
+		ArrayList<emp> e=new ArrayList<emp>();
+		e.add(new emp("alto",10));
+		e.add(new emp("brezza",5));
+		e.add(new emp("city",2));
+		
+		System.out.println("Before sort: \n");
+		disp(e);
+		Collections.sort(e);
+		System.out.println("\nAfter sort: \n");
+		disp(e);
+		
+	}
+	static void disp(ArrayList<emp> lob){
+		for (emp t:lob){
+			System.out.println("name: "+t.name+"age "+t.age);
+		}
+	}
+
+}
