@@ -1,0 +1,28 @@
+import java.util.ArrayList;
+
+public class arrlist {
+
+	public static void main(String[] args) {
+        //Normal arraylist
+        ArrayList<String> arr=new  ArrayList<String>();
+        arr.add("Rabbit");
+        arr.add("Ox");
+        System.out.println(arr.get(1));
+        for(String s:arr)
+        System.out.println(s);
+        //array of object
+        ArrayList<sample> arr2=new  ArrayList<sample>();
+        arr2.add(new sample("s1"));
+        arr2.add(new sample("s2"));
+        for(sample b:arr2)
+            System.out.println(b.name);
+        
+	}
+	static class sample{
+		String name;
+		public sample(String name){
+			this.name=name;
+		}
+	}
+
+}
