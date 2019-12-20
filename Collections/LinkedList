@@ -1,0 +1,24 @@
+package mypack;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+public class linkedlist {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LinkedList<String> a = new LinkedList<String>();
+		a.add("Ox");
+		a.add("Rabbit");
+		a.add("Cat");
+		Iterator<String> il=a.iterator();
+		while(il.hasNext())
+		{
+			System.out.println(il.next());
+		}
+		
+	}
+
+}
