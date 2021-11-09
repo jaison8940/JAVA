@@ -1,0 +1,101 @@
+/*
+Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+
+Each row must contain the digits 1-9 without repetition.
+Each column must contain the digits 1-9 without repetition.
+Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+Note:
+
+A Sudoku board (partially filled) could be valid but is not necessarily solvable.
+Only the filled cells need to be validated according to the mentioned rules.
+ 
+
+
+*/
+
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        int[][] col = new int[10][10];
+        int threeI=2, threeJ=2;
+        for(int i=0;i<9;i++)
+        {
+            int[] row = new int[10];
+            for(int j=0;j<9;j++)
+            {
+                if(board[i][j] != '.') 
+                {
+                    col[j][board[i][j] - '0']++;
+                    if(col[j][board[i][j] - '0'] > 1) return false;
+                }
+                if(board[i][j] != '.') 
+                {
+                    row[board[i][j] - '0']++;
+                    if(row[board[i][j] - '0'] > 1) return false;
+                }
+                if(i==threeI && j==threeJ)
+                {
+                    int[] three = new int[10];
+                    if(board[threeI][threeJ] != '.') three[board[threeI][threeJ] - '0']++;
+                    
+                    if(board[threeI][threeJ - 1] != '.')
+                    {
+                        three[board[threeI][threeJ - 1] - '0']++;
+                        if(three[board[threeI][threeJ - 1] - '0'] > 1) return false;
+                    }
+                    if(board[threeI][threeJ - 2] != '.')
+                    {
+                        three[board[threeI][threeJ - 2] - '0']++;
+                        if(three[board[threeI][threeJ - 2] - '0'] > 1) return false;
+                    }
+                    
+                    if(board[threeI - 2][threeJ - 2] != '.')
+                    {
+                        three[board[threeI-2][threeJ-2] - '0']++;
+                        if(three[board[threeI-2][threeJ-2] - '0'] > 1) return false;
+                    } 
+                    if(board[threeI - 2][threeJ  - 1] != '.')
+                    {
+                         three[board[threeI - 2][threeJ - 1] - '0']++;
+                         if(three[board[threeI - 2][threeJ - 1] - '0'] > 1) return false;
+                    }
+                    
+                    if(board[threeI - 2][threeJ] != '.')
+                    {
+                         three[board[threeI - 2][threeJ] - '0']++;
+                        if(three[board[threeI - 2][threeJ] - '0'] > 1) return false;
+                    }
+                    
+                    if(board[threeI - 1][threeJ - 2] != '.') 
+                     {
+                         three[board[threeI - 1][threeJ - 2] - '0']++;
+                         if(three[board[threeI - 1][threeJ - 2] - '0'] > 1) return false;
+                     }
+                    if(board[threeI - 1][threeJ - 1] != '.')
+                     {
+                         three[board[threeI - 1][threeJ - 1] - '0']++;
+                         if(three[board[threeI - 1][threeJ - 1] - '0'] > 1) return false;
+                     }
+                                     
+                    if(board[threeI - 1][threeJ] != '.')
+                     {
+                         three[board[threeI - 1][threeJ] - '0']++;
+                         if(three[board[threeI - 1][threeJ] - '0'] > 1) return false;
+                     }
+                    
+                     if(threeJ != 8) threeJ += 3;
+                     else
+                     {
+                         threeJ = 2;
+                         threeI += 3;
+                     }
+                }
+                
+                // System.out.print(board[i][j]+" ");
+            }
+            // System.out.println();
+        }
+        
+        return true;
+        
+    }
+}
