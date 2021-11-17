@@ -1,0 +1,24 @@
+/*
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+*/
+class Solution {
+    public void rotate(int[][] matrix) {
+        int i,j,start = 0,end = matrix.length - 1;
+        System.out.println(end);
+        for(i=0;i<matrix.length/2;i++)
+        {
+            for(j=0;j<end-start;j++)
+            {
+                int temp1 = matrix[i+j][end],temp2 = matrix[end][end-j];
+                matrix[i+j][end] = matrix[i][i+j];
+                matrix[end][end-j] = temp1;
+                temp1 = matrix[end-j][start];
+                matrix[end-j][start] = temp2;
+                matrix[i][i+j] = temp1;
+            }
+            start += 1;
+            end -= 1;
+        }
+    }
+}
